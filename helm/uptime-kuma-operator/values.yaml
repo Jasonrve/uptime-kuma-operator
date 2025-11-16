@@ -34,7 +34,7 @@ labels: {}
 image:
   repository: ghcr.io/jasonrve/uptime-kuma-operator
   pullPolicy: Always
-  tag: 0.1.2
+  tag: 0.2.0
 imagePullSecrets: []
 nameOverride: ''
 fullnameOverride: ''

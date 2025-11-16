@@ -6,8 +6,34 @@ entries:
         - kind: added
           description: updated role bindings
     apiVersion: v2
+    appVersion: 0.2.0
+    created: "2025-11-16T13:29:30.457601518Z"
+    dependencies:
+    - alias: uptimekuma
+      condition: uptimekuma.enabled
+      name: uptime-kuma
+      repository: https://dirsigler.github.io/uptime-kuma-helm
+      version: 2.18.0
+    description: Uptime Kuma Operator keeps Kubernetes ingress resources and Uptime
+      Kuma in sync.
+    digest: a1253483f6f1e70ffb067e1c1a060b31e9576784a0e47f7c07922525c5d46d07
+    icon: https://raw.githubusercontent.com/Jasonrve/uptime-kuma-operator/main/images/Logo.png
+    maintainers:
+    - name: jasonrve
+    name: uptime-kuma-operator
+    sources:
+    - https://github.com/Jasonrve/uptime-kuma-operator
+    type: application
+    urls:
+    - https://Jasonrve.github.io/uptime-kuma-operator/uptime-kuma-operator-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
+          description: updated role bindings
+    apiVersion: v2
     appVersion: 0.1.2
-    created: "2025-11-16T10:15:35.99087565Z"
+    created: "2025-11-16T13:29:30.456616249Z"
     dependencies:
     - alias: uptimekuma
       condition: uptimekuma.enabled
@@ -33,7 +59,7 @@ entries:
           description: updated role bindings
     apiVersion: v2
     appVersion: 0.1.1
-    created: "2025-11-16T10:15:35.989932616Z"
+    created: "2025-11-16T13:29:30.454736811Z"
     dependencies:
     - alias: uptimekuma
       condition: uptimekuma.enabled
@@ -59,7 +85,7 @@ entries:
           description: updated role bindings
     apiVersion: v2
     appVersion: 0.1.0
-    created: "2025-11-16T10:15:35.989011884Z"
+    created: "2025-11-16T13:29:30.45383621Z"
     dependencies:
     - alias: uptimekuma
       condition: uptimekuma.enabled
@@ -79,4 +105,4 @@ entries:
     urls:
     - https://Jasonrve.github.io/uptime-kuma-operator/uptime-kuma-operator-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-16T10:15:35.987895576Z"
+generated: "2025-11-16T13:29:30.452520905Z"

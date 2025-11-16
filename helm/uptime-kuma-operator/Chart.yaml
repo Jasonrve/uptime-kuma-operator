@@ -3,8 +3,8 @@ name: uptime-kuma-operator
 description: Uptime Kuma Operator keeps Kubernetes ingress resources and Uptime Kuma
   in sync.
 type: application
-version: 0.1.2
-appVersion: 0.1.2
+version: 0.2.0
+appVersion: 0.2.0
 icon: https://raw.githubusercontent.com/Jasonrve/uptime-kuma-operator/main/images/Logo.png
 dependencies:
   - name: uptime-kuma
