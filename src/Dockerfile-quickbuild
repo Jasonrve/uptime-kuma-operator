@@ -1,0 +1,25 @@
+FROM --platform=linux/$TARGETARCH mcr.microsoft.com/dotnet/sdk:8.0-alpine as build
+ARG TARGETARCH
+ARG BUILDPLATFORM
+WORKDIR /operator
+
+
+RUN echo "TARGETARCH=$TARGETARCH"
+RUN echo "BUILDPLATFORM=$BUILDPLATFORM"
+COPY ./ ./
+RUN dotnet publish "Uptime-kuma-operator.csproj" -c Release -o out \
+    --self-contained true \
+    /p:PublishSingleFile=true \
+    -a $TARGETARCH
+RUN ls out
+
+# The runner for the application
+FROM --platform=linux/$TARGETARCH mcr.microsoft.com/dotnet/aspnet:8.0-alpine as final
+ARG TARGETARCH
+ARG BUILDPLATFORM
+WORKDIR /operator
+COPY --from=build /operator/out/ ./
+RUN ls /operator
+RUN chmod -R 777 /operator
+
+ENTRYPOINT ["/operator/Uptime-kuma-operator" ]

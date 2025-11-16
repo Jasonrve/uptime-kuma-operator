@@ -1,0 +1,46 @@
+# Ignore build outputs
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.vspscc
+*.vssscc
+
+# Ignore configuration files for development environments
+.vscode/
+.idea/
+*.suo
+*.ncrunchsolution
+*.dotSettings.user
+
+# Ignore git-related files
+.git/
+.gitignore
+.gitattributes
+
+# Ignore NuGet packages directory (if not using a global cache)
+.nuget/
+
+# Ignore macOS, Linux, and Windows generated files
+[Dd]esktop.ini
+[Tt]humbs.db
+*.DS_Store
+*.directory
+
+# Ignore log files
+*.log
+
+# Ignore publish outputs
+**/publish/
+**/out/
+
+# Ignore temporary files created by VS or other tools
+*.tmp
+*.temp
+
+# Ignore Rider files
+.idea/
+*.sln.iml
+
+# Ignore Docker files that aren't needed for the image

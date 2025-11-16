@@ -1,0 +1,84 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: operator-role
+rules:
+- apiGroups:
+  - uptime.kuma
+  resources:
+  - converts
+  - dashboards
+  - genericmonitors
+  - httpmonitors
+  - notifications
+  verbs:
+  - '*'
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - ingresses
+  verbs:
+  - '*'
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - get
+  - list
+  - create
+  - update
+- apiGroups:
+  - coordination.k8s.io
+  resources:
+  - leases
+  verbs:
+  - '*'
+- apiGroups:
+  - uptime.kuma
+  resources:
+  - converts/status
+  verbs:
+  - get
+  - update
+  - patch
+- apiGroups:
+  - uptime.kuma
+  resources:
+  - dashboards/status
+  verbs:
+  - get
+  - update
+  - patch
+- apiGroups:
+  - uptime.kuma
+  resources:
+  - genericmonitors/status
+  verbs:
+  - get
+  - update
+  - patch
+- apiGroups:
+  - uptime.kuma
+  resources:
+  - httpmonitors/status
+  verbs:
+  - get
+  - update
+  - patch
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - ingresses/status
+  verbs:
+  - get
+  - update
+  - patch
+- apiGroups:
+  - uptime.kuma
+  resources:
+  - notifications/status
+  verbs:
+  - get
+  - update
+  - patch

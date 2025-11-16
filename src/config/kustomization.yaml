@@ -1,0 +1,20 @@
+namespace: uptime-kuma-operator-system
+namePrefix: uptime-kuma-operator-
+commonLabels:
+  operator: uptime-kuma-operator
+resources:
+- operator-role.yaml
+- operator-role-binding.yaml
+- deployment.yaml
+- converts_uptime_kuma.yaml
+- dashboards_uptime_kuma.yaml
+- notifications_uptime_kuma.yaml
+- genericmonitors_uptime_kuma.yaml
+- httpmonitors_uptime_kuma.yaml
+- namespace.yaml
+images:
+- name: operator
+  newName: accessible-docker-image
+  newTag: latest
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization

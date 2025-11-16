@@ -1,0 +1,204 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: genericmonitors.uptime.kuma
+spec:
+  group: uptime.kuma
+  names:
+    kind: GenericMonitor
+    listKind: GenericMonitorList
+    plural: genericmonitors
+    singular: genericmonitor
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.status.status
+      name: status
+      priority: 0
+      type: string
+    name: v1
+    schema:
+      openAPIV3Schema:
+        properties:
+          status:
+            nullable: false
+            properties:
+              test:
+                nullable: false
+                type: string
+            type: object
+          spec:
+            nullable: false
+            properties:
+              id:
+                format: int32
+                nullable: false
+                type: integer
+              type:
+                nullable: true
+                type: string
+              name:
+                nullable: true
+                type: string
+              active:
+                nullable: false
+                type: boolean
+              tags:
+                items:
+                  properties:
+                    id:
+                      format: int64
+                      nullable: false
+                      type: integer
+                    monitorId:
+                      format: int64
+                      nullable: false
+                      type: integer
+                    tagId:
+                      format: int64
+                      nullable: false
+                      type: integer
+                    value:
+                      nullable: true
+                      type: string
+                    name:
+                      nullable: true
+                      type: string
+                    color:
+                      nullable: true
+                      type: string
+                  type: object
+                nullable: true
+                type: array
+              weight:
+                format: int32
+                nullable: false
+                type: integer
+              parent:
+                nullable: true
+                type: string
+              url:
+                nullable: true
+                type: string
+              method:
+                nullable: false
+                type: string
+              interval:
+                format: int32
+                nullable: false
+                type: integer
+              retryInterval:
+                format: int32
+                nullable: false
+                type: integer
+              resendInterval:
+                format: int32
+                nullable: false
+                type: integer
+              maxretries:
+                format: int32
+                nullable: false
+                type: integer
+              timeout:
+                format: int32
+                nullable: false
+                type: integer
+              notificationIDList:
+                additionalProperties:
+                  nullable: false
+                  type: boolean
+                nullable: true
+                type: object
+              ignoreTls:
+                nullable: false
+                type: boolean
+              description:
+                nullable: true
+                type: string
+              upsideDown:
+                nullable: false
+                type: boolean
+              packetSize:
+                format: int32
+                nullable: false
+                type: integer
+              expiryNotification:
+                nullable: false
+                type: boolean
+              maxredirects:
+                format: int32
+                nullable: false
+                type: integer
+              accepted_statuscodes:
+                items:
+                  nullable: false
+                  type: string
+                nullable: false
+                type: array
+              dns_resolve_type:
+                nullable: false
+                type: string
+              dns_resolve_server:
+                nullable: false
+                type: string
+              docker_container:
+                nullable: true
+                type: string
+              docker_host:
+                nullable: true
+                type: string
+              proxyId:
+                nullable: true
+                type: string
+              mqttUsername:
+                nullable: true
+                type: string
+              mqttPassword:
+                nullable: true
+                type: string
+              mqttTopic:
+                nullable: true
+                type: string
+              mqttSuccessMessage:
+                nullable: true
+                type: string
+              authMethod:
+                nullable: true
+                type: string
+              oauth_auth_method:
+                nullable: false
+                type: string
+              httpBodyEncoding:
+                nullable: false
+                type: string
+              headers:
+                nullable: true
+                type: string
+              jsonPath:
+                nullable: true
+                type: string
+              kafkaProducerBrokers:
+                items:
+                  nullable: false
+                  type: string
+                nullable: true
+                type: array
+              kafkaProducerSaslOptions:
+                nullable: true
+                properties:
+                  mechanism:
+                    nullable: false
+                    type: string
+                type: object
+              kafkaProducerSsl:
+                nullable: false
+                type: boolean
+              gamedigGivenPortOnly:
+                nullable: false
+                type: boolean
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

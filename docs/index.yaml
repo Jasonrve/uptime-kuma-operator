@@ -1,0 +1,82 @@
+apiVersion: v1
+entries:
+  uptime-kuma-operator:
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
+          description: updated role bindings
+    apiVersion: v2
+    appVersion: 0.1.2
+    created: "2025-11-16T10:15:35.99087565Z"
+    dependencies:
+    - alias: uptimekuma
+      condition: uptimekuma.enabled
+      name: uptime-kuma
+      repository: https://dirsigler.github.io/uptime-kuma-helm
+      version: 2.18.0
+    description: Uptime Kuma Operator keeps Kubernetes ingress resources and Uptime
+      Kuma in sync.
+    digest: 0496ae1a6b9f934dfbd621c342093beaf89e576fb357a6e5e5383ff474d1e9bc
+    icon: https://raw.githubusercontent.com/Jasonrve/uptime-kuma-operator/main/images/Logo.png
+    maintainers:
+    - name: jasonrve
+    name: uptime-kuma-operator
+    sources:
+    - https://github.com/Jasonrve/uptime-kuma-operator
+    type: application
+    urls:
+    - https://Jasonrve.github.io/uptime-kuma-operator/uptime-kuma-operator-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
+          description: updated role bindings
+    apiVersion: v2
+    appVersion: 0.1.1
+    created: "2025-11-16T10:15:35.989932616Z"
+    dependencies:
+    - alias: uptimekuma
+      condition: uptimekuma.enabled
+      name: uptime-kuma
+      repository: https://dirsigler.github.io/uptime-kuma-helm
+      version: 2.18.0
+    description: Uptime Kuma Operator keeps Kubernetes ingress resources and Uptime
+      Kuma in sync.
+    digest: d5e58df9b84557aa041a59d0974d5633dcf775e39bc76f239389ed6a7bb5dc88
+    icon: https://raw.githubusercontent.com/Jasonrve/uptime-kuma-operator/main/images/Logo.png
+    maintainers:
+    - name: jasonrve
+    name: uptime-kuma-operator
+    sources:
+    - https://github.com/Jasonrve/uptime-kuma-operator
+    type: application
+    urls:
+    - https://Jasonrve.github.io/uptime-kuma-operator/uptime-kuma-operator-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      artifacthub.io/changes: |-
+        - kind: added
+          description: updated role bindings
+    apiVersion: v2
+    appVersion: 0.1.0
+    created: "2025-11-16T10:15:35.989011884Z"
+    dependencies:
+    - alias: uptimekuma
+      condition: uptimekuma.enabled
+      name: uptime-kuma
+      repository: https://dirsigler.github.io/uptime-kuma-helm
+      version: 2.18.0
+    description: Uptime Kuma Operator keeps Kubernetes ingress resources and Uptime
+      Kuma in sync.
+    digest: 518df7d87a78bd0f85517a92f286b7f0272a75660ff4633343fbaa8fbd082636
+    icon: https://raw.githubusercontent.com/Jasonrve/uptime-kuma-operator/main/images/Logo.png
+    maintainers:
+    - name: jasonrve
+    name: uptime-kuma-operator
+    sources:
+    - https://github.com/Jasonrve/uptime-kuma-operator
+    type: application
+    urls:
+    - https://Jasonrve.github.io/uptime-kuma-operator/uptime-kuma-operator-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-11-16T10:15:35.987895576Z"

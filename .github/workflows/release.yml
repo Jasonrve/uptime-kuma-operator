@@ -1,0 +1,85 @@
+name: Release and Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., 0.1.4)'
+        required: true
+
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        run: |
+          IMAGE_REPO=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          docker build -f src/Dockerfile -t ghcr.io/$IMAGE_REPO:${{ github.event.inputs.version }} ./src
+          docker push ghcr.io/$IMAGE_REPO:${{ github.event.inputs.version }}
+
+      - name: Install yq
+        run: sudo apt-get update && sudo apt-get install -y yq
+
+      - name: Update Helm chart version and image tag
+        run: |
+          yq -y -i ".version = \"${{ github.event.inputs.version }}\" | .appVersion = \"${{ github.event.inputs.version }}\"" helm/uptime-kuma-operator/Chart.yaml
+          yq -y -i ".image.tag = \"${{ github.event.inputs.version }}\"" helm/uptime-kuma-operator/values.yaml
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.14.4
+
+      - name: Package Helm chart
+        run: |
+          mkdir -p docs
+          helm package helm/uptime-kuma-operator -d docs
+
+      - name: Update Helm repo index
+        run: |
+          helm repo index docs --url https://Jasonrve.github.io/uptime-kuma-operator/
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs helm/uptime-kuma-operator/Chart.yaml helm/uptime-kuma-operator/values.yaml
+          git commit -m "Release ${{ github.event.inputs.version }}: update Helm chart and docs" || echo "No changes to commit"
+          git push
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          PREV_TAG=$(git tag --sort=-creatordate | grep -v "${{ github.event.inputs.version }}" | head -n1 || echo "")
+          if [ -z "$PREV_TAG" ]; then
+            git log --pretty=format:"- %s (%h)" > CHANGELOG.txt
+          else
+            git log "$PREV_TAG"..HEAD --pretty=format:"- %s (%h)" > CHANGELOG.txt
+          fi
+          printf 'changelog<<EOF\n%s\nEOF\n' "$(cat CHANGELOG.txt)" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.inputs.version }}
+          name: Release ${{ github.event.inputs.version }}
+          body: ${{ steps.changelog.outputs.changelog }}
+          draft: false
+          prerelease: false

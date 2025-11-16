@@ -1,0 +1,5 @@
+# All code requires review by @jasonrve
+* @jasonrve
+
+# Helm chart requires review by @jasonrve
+/charts/uptime-kuma-operator/* @jasonrve

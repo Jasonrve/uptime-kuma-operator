@@ -1,0 +1,41 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: converts.uptime.kuma
+spec:
+  group: uptime.kuma
+  names:
+    kind: Convert
+    listKind: ConvertList
+    plural: converts
+    singular: convert
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.status.status
+      name: status
+      priority: 0
+      type: string
+    name: v1
+    schema:
+      openAPIV3Schema:
+        properties:
+          status:
+            nullable: false
+            properties:
+              status:
+                nullable: false
+                type: string
+            type: object
+          spec:
+            nullable: false
+            properties:
+              name:
+                nullable: true
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

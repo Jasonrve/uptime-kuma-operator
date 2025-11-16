@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<linker>
+  <assembly fullname="Uptime-kuma-operator">
+    <type fullname="k8s.Watcher`1+WatchEvent`1[k8s.KubernetesObject]" preserve="all" />
+  </assembly>
+</linker>

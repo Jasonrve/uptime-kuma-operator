@@ -1,0 +1,17 @@
+{
+  "profiles": {
+    "DemoOperator": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "kuma_host": "http://uptime.test.example.co.za",
+        "kuma_load_all_ingress": "true",
+        "kuma_password": "Test0!",
+        "kuma_username": "admin",
+        "sync_delay":  "5",
+      },
+      "applicationUrl": "https://localhost:53947;http://localhost:53948"
+    }
+  }
+}

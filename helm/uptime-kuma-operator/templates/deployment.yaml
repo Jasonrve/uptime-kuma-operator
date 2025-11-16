@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "uptime-kuma-operator.fullname" . }}
+  labels:
+    {{- include "uptime-kuma-operator.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "uptime-kuma-operator.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "uptime-kuma-operator.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "uptime-kuma-operator.serviceAccountName" . }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          {{- if .Values.uptimekuma.password_secret_key }}
+            - name: kuma_password
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.uptimekuma.password_secret_key }}
+                  key: uptimekuma_password
+          {{- else }}
+            - name: kuma_password
+              value: {{ .Values.uptimekuma.password | quote }}
+          {{- end }}
+            - name: kuma_load_all_ingress
+              value: {{ .Values.kuma_load_all_ingress | quote }}
+            - name: kuma_username
+              value: {{ .Values.uptimekuma.username | quote }}
+            - name: kuma_host
+              value: {{ if .Values.uptimekuma.host }}{{ .Values.uptimekuma.host | quote }}{{ else }}"http://{{ $.Release.Name }}-uptimekuma:3001"{{ end }}
+            {{- if .Values.resources }}
+            resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+            {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+

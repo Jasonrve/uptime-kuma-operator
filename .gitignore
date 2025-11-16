@@ -1,0 +1,18 @@
+# .NET Core
+bin/
+obj/
+out/
+*.suo
+*.user
+*.userosscache
+*.asax.resx
+*.svclog
+*.sln.docstates
+*.dll
+*.exe
+*.pdb
+*.userprefs
+*.nupkg
+*.nuget.props
+*.nuget.targets
+*.pubxml
