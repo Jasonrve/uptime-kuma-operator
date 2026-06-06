@@ -46,8 +46,3 @@ Uptime Kuma Operator reads Kubernetes resources and keeps Uptime Kuma monitors i
 3. [Custom resources](/guide/custom-resources)
 4. [Operations](/guide/operations)
 
-## Documentation preview
-
-The homepage screenshot below is generated from the VitePress site itself and committed for reference.
-
-![Docs homepage](/images/docs-homepage.png)
