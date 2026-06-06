@@ -23,7 +23,7 @@
 
 Uptime Kuma Operator automatically registers Uptime Kuma monitors and applies a GitOps approach to monitor registration.
 
-
+For the new docs site, see the VitePress content in `docs/` and the deployment workflow in `.github/workflows/docs.yml`.
 
 ##### Identifiers
 Uptime items are displayed by tags. These items are managed by the operator. Any other items you create will not be managed by the operator.

@@ -1,0 +1,15 @@
+{
+  "name": "uptime-kuma-operator-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev .",
+    "build": "vitepress build .",
+    "preview": "vitepress preview .",
+    "screenshot": "node scripts/capture-homepage.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.0",
+    "vitepress": "^1.6.3"
+  }
+}
