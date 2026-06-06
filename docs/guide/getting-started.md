@@ -5,7 +5,7 @@ The operator packages its Kubernetes integration as a Helm chart in `helm/uptime
 ## Install the chart
 
 ```bash
-helm repo add uptime-kuma-operator https://jasonrve.github.io/helm-charts
+helm repo add uptime-kuma-operator https://jasonrve.github.io/uptime-kuma-operator/
 helm repo update
 helm install my-release uptime-kuma-operator/uptime-kuma-operator
 ```

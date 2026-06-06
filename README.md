@@ -23,7 +23,7 @@
 
 Uptime Kuma Operator automatically registers Uptime Kuma monitors and applies a GitOps approach to monitor registration.
 
-For the new docs site, see the VitePress content in `docs/` and the deployment workflow in `.github/workflows/docs.yml`.
+For the new docs site, see the VitePress content in `docs/` and the deployment workflow in `.github/workflows/docs.yml`. The same GitHub Pages site also serves the Helm repository index for the chart.
 
 ##### Identifiers
 Uptime items are displayed by tags. These items are managed by the operator. Any other items you create will not be managed by the operator.
@@ -71,7 +71,7 @@ To install Uptime Kuma Operator on Kubernetes, you can use the Helm chart availa
 1. Add the Helm repository:
 
   ```bash
-  helm repo add uptime-kuma-operator https://jasonrve.github.io/helm-charts
+  helm repo add uptime-kuma-operator https://jasonrve.github.io/uptime-kuma-operator/
   helm repo update
   ```
 

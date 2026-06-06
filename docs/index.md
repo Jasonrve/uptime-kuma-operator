@@ -34,6 +34,7 @@ Uptime Kuma Operator reads Kubernetes resources and keeps Uptime Kuma monitors i
 ## What you will find in these docs
 
 - A quick start for installing the Helm chart
+- A guide to the same GitHub Pages site serving the Helm repository and the docs
 - A guide to the custom resources the operator watches
 - Operational notes for sync behavior, retries, and status fields
 - Example manifests you can adapt to your own cluster
@@ -41,8 +42,9 @@ Uptime Kuma Operator reads Kubernetes resources and keeps Uptime Kuma monitors i
 ## Suggested reading path
 
 1. [Getting started](/guide/getting-started)
-2. [Custom resources](/guide/custom-resources)
-3. [Operations](/guide/operations)
+2. [Helm repository](/guide/helm-repository)
+3. [Custom resources](/guide/custom-resources)
+4. [Operations](/guide/operations)
 
 ## Documentation preview
 
